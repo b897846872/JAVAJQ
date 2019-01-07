@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blog.mapper.SysRolePermissionMapper">
+    <insert id="saveSysRolePermission">
+    	INSERT INTO sys_role_permission
+    		(rid, pid) 
+    	VALUES
+    		(#{rid}, #{pid});
+    </insert>
+    <delete id="deleteSysRolePermission" parameterType="String">
+    	DELETE FROM sys_role_permission WHERE rid = #{rid};
+    </delete>
+</mapper>

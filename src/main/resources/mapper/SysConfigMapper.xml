@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blog.mapper.SysConfigMapper">
+    <select id="findSysConfigAll" resultType="sysConfigPo" parameterType="String">
+        SELECT 
+        	c.id as id, c.name as name, c.value as value, 
+        	c.create_time as createTime, c.update_time as updateTime,
+        	u.id as userId, u.login_name as loginName, c.remark as remark
+        FROM sys_config c
+        LEFT JOIN sys_user u ON u.id = c.user_id 
+        where 1=1
+		<if test="_parameter != null">
+        	and ( name like CONCAT('%',#{searchValue},'%')
+        	or UPPER(value) like UPPER(CONCAT('%',#{searchValue},'%')) )
+        </if>
+    </select>
+    <select id="findSysConfigByName" resultType="sysConfigPo" parameterType="String">
+        SELECT 
+        	id, name, value, remark, create_time as createTime, update_time as updateTime
+        FROM sys_config 
+        WHERE name = #{name};
+    </select>
+    <insert id="saveSysConfig">
+    	INSERT INTO sys_config
+    		(id, name, value, remark, user_id, create_time) 
+    	VALUES
+    		(#{id}, #{name}, #{value}, #{remark}, #{userId}, #{createTime});
+    </insert>
+    <delete id="deleteSysConfig" parameterType="String">
+    	DELETE FROM sys_config WHERE id = #{id};
+    </delete>
+    <update id="updateSysConfig">
+    	UPDATE sys_config SET 
+    		name = #{name}, value = #{value}, remark = #{remark}, update_time = #{updateTime}
+    	WHERE id = #{id};
+    </update>
+</mapper>

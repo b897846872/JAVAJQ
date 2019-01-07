@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blog.mapper.SysLogMapper">
+    <select id="findSysLogAll" resultType="sysLogPo" parameterType="String">
+        SELECT 
+        	l.id as id, l.ip as ip, u.login_name as operateUser, l.operate_module as operateModule,
+        	l.log_content as logContent, l.create_time as createTime, l.update_time as updateTime,
+        	u.id as userId
+        FROM sys_log l
+        LEFT JOIN sys_user u ON u.login_name = l.operate_user
+        where 1=1
+		<if test="_parameter != null">
+        	and ( ip like CONCAT('%',#{searchValue},'%')
+        	or operate_module like CONCAT('%',#{searchValue},'%') )
+        </if>
+        order by l.create_time desc
+    </select>
+    <insert id="saveSysLog">
+    	INSERT INTO sys_log
+    		(id, ip, operate_user, operate_module, log_content, create_time) 
+    	VALUES
+    		(#{id}, #{ip}, #{operateUser}, #{operateModule}, #{logContent}, #{createTime});
+    </insert>
+</mapper>

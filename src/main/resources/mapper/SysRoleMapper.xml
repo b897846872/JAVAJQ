@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blog.mapper.SysRoleMapper">
+    <select id="findSysRoleByUserId" resultType="sysRolePo" parameterType="String">
+		select r.id as id, r.name as name, r.type as type, u.login_name as loginName,
+		r.create_time as createTime, r.update_time as updateTime
+		FROM sys_user_role ur
+			LEFT JOIN sys_user u on ur.uid = u.id
+			LEFT JOIN sys_role r on r.id = ur.rid
+		WHERE 1=1
+		<if test="_parameter != null">
+        	and u.id = #{userId}
+        </if>
+    </select>
+    <select id="findSysRoleAll" resultType="sysRolePo" parameterType="String">
+		select r.id as id, r.name as name, r.type as type, u.login_name as loginName,
+		r.create_time as createTime, r.update_time as updateTime
+		FROM sys_role r 
+			LEFT JOIN sys_user u on r.user_id = u.id
+		WHERE 1=1
+		<if test="_parameter != null">
+        	and r.name like CONCAT('%',#{searchValue},'%')
+        </if>
+    </select>
+    <insert id="saveSysRole">
+    	INSERT INTO sys_role
+    		(id, name, type, user_id, create_time) 
+    	VALUES
+    		(#{id}, #{name}, #{type}, #{userId}, #{createTime});
+    </insert>
+    <delete id="deleteSysRole" parameterType="String">
+    	DELETE FROM sys_role WHERE id = #{id};
+    </delete>
+    <update id="updateSysRole">
+    	UPDATE sys_role SET 
+    		name = #{name}, type = #{type}, update_time = #{updateTime}
+    	WHERE id = #{id};
+    </update>
+</mapper>
