@@ -1,8 +1,13 @@
-package com.demo.grabRedPacket.dao;
+package com.demo.grabRedPacket.mapper;
+
+import org.apache.ibatis.annotations.Mapper;
 
 import com.demo.grabRedPacket.model.RedPacket;
 
-public interface RedPacketDao {
+import tk.mybatis.mapper.common.BaseMapper;
+
+@Mapper
+public interface RedPacketMapper extends BaseMapper<RedPacket>{
 	/**
 	 * 获取红包信息
 	 * @param id
