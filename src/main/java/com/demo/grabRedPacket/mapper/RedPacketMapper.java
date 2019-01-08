@@ -15,9 +15,17 @@ public interface RedPacketMapper extends BaseMapper<RedPacket>{
 	 */
 	public RedPacket getRedPacket(Long id);
 	/**
+	 * 获取红包信息,使用for update加锁
+	 * @param id
+	 * @return
+	 */
+	public RedPacket getRedPacketForUpdate(Long id);
+	/**
 	 * 扣减抢红包数
 	 * @param id
 	 * @return
 	 */
 	public int devcreaseRedPacket(Long id);
+	
+	public int devcreaseRedPacketForVersion(RedPacket redPacket);
 }

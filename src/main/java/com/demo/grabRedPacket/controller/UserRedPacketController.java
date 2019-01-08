@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.demo.grabRedPacket.service.UserRedPacketService;
 
@@ -14,7 +16,10 @@ import com.demo.grabRedPacket.service.UserRedPacketService;
 public class UserRedPacketController {
 	@Autowired
 	private UserRedPacketService userRedPacketService;
-	public Map<String, Object> grapRedPacket(Long redPacketId, Long userId)  {
+	
+	@PostMapping("/grapRedPacket")
+	public Map<String, Object> grapRedPacket(@RequestParam(required = true) Long redPacketId, 
+				@RequestParam(required = true) Long userId)  {
 		// 抢红包
 		int result = userRedPacketService.grapRedPacket(redPacketId, userId);
 		Boolean flag = result > 0;
