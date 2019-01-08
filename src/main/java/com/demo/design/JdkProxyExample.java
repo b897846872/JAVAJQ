@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
- * 动态代理绑定和代理逻辑 (使用拦截器)
+ * 动态代理绑定和代理逻辑
  * @author qi
  */
 public class JdkProxyExample implements InvocationHandler{
