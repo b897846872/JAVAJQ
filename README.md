@@ -1,15 +1,40 @@
-java里的一些demo实例，不时更新。
-# 目录
+#####工作四年了，重新系统学习下，先从不会的开始！！！
 
-- [java设计模式](#java设计模式)
-- [抢红包demo](#抢红包demo)
+##一、	Java基础
 
-## java动态代理
+##二、	多线程JUC（锁/分布式锁）
 
-- [JDK动态代理](https://github.com/b897846872/demo/blob/master/src/main/java/com/demo/design/JdkProxyExample.java)
-- [cglib代理](https://github.com/b897846872/demo/blob/master/src/main/java/com/demo/design/CglibProxyExample.java)
-- [观察者模式](https://github.com/b897846872/demo/tree/master/src/main/java/com/demo/design)
-JDObserver.java和ProductList.java
 
-## 抢红包demo
 
+##三、	JVM
+
+
+
+##四、	Spring/Spring boot/MyBatis
+
+
+
+##五、	Mysql
+
+
+
+##六、	事务/分布式事务
+
+
+
+##七、	Redis
+
+
+
+##八、	Netty
+
+
+
+##九、	消息队列RabbitMQ
+
+
+
+##十、	算法/数据结构
+
+
+##十一、	设计模式
